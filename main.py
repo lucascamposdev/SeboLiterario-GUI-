@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 
 primaryColor = "#3e4f82"
+
 class BookstoreApp:
     def __init__(self, root):
         self.root = root
@@ -81,8 +82,38 @@ class BookstoreApp:
         self.sell_button = Button(details_frame, text="Vender", width=10, bg=primaryColor, fg="white")
         self.sell_button.grid(row=3, column=1, pady=10, padx=5)
         
-        self.exchange_button = Button(details_frame, text="Trocar", width=10, bg=primaryColor, fg="white")
+        self.exchange_button = Button(details_frame, text="Trocar", width=10, bg=primaryColor, fg="white", command=self.show_exchange_form)
         self.exchange_button.grid(row=3, column=2, pady=20, padx=5)
+        
+    def show_exchange_form(self):
+        self.exchange_window = Toplevel(self.root)
+        self.exchange_window.title("Trocar Livro")
+        self.exchange_window.geometry("400x300")
+        
+        Label(self.exchange_window, text="Livro Recebido", font=("Arial", 14)).pack(pady=10)
+        
+        Label(self.exchange_window, text="Titulo:").pack(pady=5)
+        self.new_title_entry = Entry(self.exchange_window, width=50)
+        self.new_title_entry.pack(pady=5)
+        
+        Label(self.exchange_window, text="Preço:").pack(pady=5)
+        self.new_price_entry = Entry(self.exchange_window, width=20)
+        self.new_price_entry.pack(pady=5)
+        
+        Label(self.exchange_window, text="Quantidade:").pack(pady=5)
+        self.new_quantity_entry = Entry(self.exchange_window, width=20)
+        self.new_quantity_entry.pack(pady=5)
+        
+        Button(self.exchange_window, text="Adicionar Livro", width=15, bg=primaryColor, fg="white", command=self.add_new_book).pack(pady=20)
+
+    def add_new_book(self):
+        new_title = self.new_title_entry.get()
+        new_price = self.new_price_entry.get()
+        new_quantity = self.new_quantity_entry.get()
+        
+        if new_title and new_price and new_quantity:
+            self.book_tree.insert("", "end", values=(new_title, new_price, new_quantity))
+            self.exchange_window.destroy()
 
 if __name__ == "__main__":
     root = Tk()
