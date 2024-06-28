@@ -33,7 +33,7 @@ class BookstoreApp:
         self.book_tree.heading("Quantity", text="Quantidade")
         
         # Adicionando alguns dados de exemplo
-        self.book_tree.insert("", "end", values=("A Biblioteca da Meia Noite", "R$ 25", "1"))
+        self.book_tree.insert("", "end", values=("Almas ao vento", "R$ 25", "1"))
         self.book_tree.insert("", "end", values=("O Alquimista", "R$ 20", "2"))
         self.book_tree.insert("", "end", values=("O Ceifador", "R$ 15", "1"))
         self.book_tree.insert("", "end", values=("Sherlock Holmes", "R$ 15", "1"))
